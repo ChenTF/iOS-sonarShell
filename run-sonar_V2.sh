@@ -183,6 +183,9 @@ if [[ $projectFile != "" ]]; then
 	# 设置XCode的签名方式为手动签名
 	echo "-----设置自动签名, projectFile: $projectFile \n"
 	sed -i "" "s%\ProvisioningStyle.*%\ProvisioningStyle = Manual;%g" "${projectFile}/project.pbxproj"
+	# 删除TeamID设置
+	sed -i "" "s%\DevelopmentTeam.*%\ %g" "${projectFile}/project.pbxproj"
+	sed -i "" "s%\DEVELOPMENT_TEAM.*%\ %g" "${projectFile}/project.pbxproj"
 fi
 
 if [[ "$workspaceFile" != "" ]] ; then
