@@ -326,7 +326,7 @@
         </rule>
         <rule>
             <repositoryKey>OCLint</repositoryKey>
-            <key>continue</key>
+            <key>ill-placed default label in switch statement</key>
         </rule>
         <rule>
             <repositoryKey>OCLint</repositoryKey>
@@ -340,6 +340,9 @@
             <repositoryKey>OCLint</repositoryKey>
             <key>continue</key>
         </rule>
-
+        <rule>
+            <repositoryKey>OCLint</repositoryKey>
+            <key>continue</key>
+        </rule>
     </rules>
 </profile>

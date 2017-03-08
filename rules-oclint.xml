@@ -507,6 +507,12 @@
         <priority>MAJOR</priority>
         <description>Switch statements should have a default statement.</description>
     </rule>
+    <rule>
+        <key>ill-placed default label in switch statement</key>
+        <name>Switch Statements Misplaced Default Label</name>
+        <priority>MAJOR</priority>
+        <description>Switch Statements Misplaced Default Label.</description>
+    </rule>
     <!-- step3 -->
 
 </rules>
