@@ -253,8 +253,11 @@ echo "------------profilename: $profilename"
 
 export LC_ALL="en_US.UTF-8"
 
-xcodebuild -workspace "${workspaceFile}" -scheme "${appScheme}" CODE_SIGN_IDENTITY="${codesign}" PROVISIONING_PROFILE="${profilename}" ONLY_ACTIVE_ARCH=NO -configuration Release  build | tee xcodebuild.log | xcpretty -r json-compilation-database --output compile_commands.json
-
+if [[ "$workspaceFile" != "" ]] ; then
+	xcodebuild -workspace "${workspaceFile}" -scheme "${appScheme}" CODE_SIGN_IDENTITY="${codesign}" PROVISIONING_PROFILE="${profilename}" ONLY_ACTIVE_ARCH=NO -configuration Release  build | tee xcodebuild.log | xcpretty -r json-compilation-database --output compile_commands.json
+else
+	xcodebuild -project "${projectFile}" -scheme "${appScheme}" CODE_SIGN_IDENTITY="${codesign}" PROVISIONING_PROFILE="${profilename}" ONLY_ACTIVE_ARCH=NO -configuration Release  build | tee xcodebuild.log | xcpretty -r json-compilation-database --output compile_commands.json
+fi
 
 
 # Unit tests and coverage

@@ -243,9 +243,11 @@ echo -n 'Extracting Xcode project information'
 xcodebuild clean
 
 export LC_ALL="en_US.UTF-8"
-
-xcodebuild -workspace "${workspaceFile}" -scheme "${appScheme}" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6' ONLY_ACTIVE_ARCH=NO -configuration Release  build | tee xcodebuild.log | xcpretty -r json-compilation-database --output compile_commands.json
-
+if [[ "$workspaceFile" != "" ]] ; then
+	xcodebuild -workspace "${workspaceFile}" -scheme "${appScheme}" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6' ONLY_ACTIVE_ARCH=NO -configuration Release  build | tee xcodebuild.log | xcpretty -r json-compilation-database --output compile_commands.json
+else
+	xcodebuild -project "${projectFile}" -scheme "${appScheme}" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6' ONLY_ACTIVE_ARCH=NO -configuration Release  build | tee xcodebuild.log | xcpretty -r json-compilation-database --output compile_commands.json
+fi
 
 #  ---- 单元测试 与 覆盖率 部分 ----
 # Unit tests and coverage
